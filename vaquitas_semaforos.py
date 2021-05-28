@@ -24,10 +24,11 @@ class Vaca(threading.Thread):
 
     def run(self):
         while(True):
-            semaforoVaquitas.acquire()
-            try:
-                self.avanzar()
-            finally:
+            self.avanzar()
+            if (self.posicion == inicioPuente - 1):
+                semaforoVaquitas.acquire()
+          
+            if (self.posicion == inicioPuente + largoPuente):
                 semaforoVaquitas.release()
 
 vacas = []
